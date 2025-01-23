@@ -1,0 +1,8 @@
+node_modules/
+cypress/
+data/
+
+# Documentation folder - exclude everything except specific CSV files
+documentation/*
+!documentation/Connectors_compatible_tools_with_images.csv
+!documentation/klauke_products_with_details.csv

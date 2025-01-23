@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compatibility</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="header">
+        <a href="#" class="back-button">←</a>
+        <h1>Compatibility</h1>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Conductor Material</div>
+        <div class="material-options">
+            <label class="material-option">
+                <input type="radio" name="material" value="Copper" checked>
+                <span class="custom-checkbox"></span>
+                <span class="material-label">Copper</span>
+            </label>
+            <label class="material-option">
+                <input type="radio" name="material" value="Aluminium">
+                <span class="custom-checkbox"></span>
+                <span class="material-label">Aluminium</span>
+            </label>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title with-space">Conductor Type</div>
+        <div class="conductor-types">
+            <div class="conductor-type">
+                <div class="conductor-icon">
+                    <img src="assets/C1.png" alt="Class 1">
+                </div>
+                <div class="conductor-type-text">
+                    Class 1<br>Solid
+                </div>
+            </div>
+            <div class="conductor-type selected">
+                <div class="conductor-icon">
+                    <img src="assets/C2.png" alt="Class 2">
+                </div>
+                <div class="conductor-type-text">
+                    Class 2<br>Multi-Stranded
+                </div>
+            </div>
+            <div class="conductor-type">
+                <div class="conductor-icon">
+                    <img src="assets/C5.png" alt="Class 5">
+                </div>
+                <div class="conductor-type-text">
+                    Class 5<br>Fine
+                </div>
+            </div>
+            <div class="conductor-type">
+                <div class="conductor-icon">
+                    <img src="assets/C6.png" alt="Class 6">
+                </div>
+                <div class="conductor-type-text">
+                    Class 6<br>Superfine
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Cross Section</div>
+        <div class="slider-container">
+            <input type="range" id="cross-section-slider" class="cross-section-slider">
+            <div id="cross-section-value" class="slider-value">50 <span class="unit">mm²</span></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title with-space">Stud Hole Size</div>
+        <div class="slider-container">
+            <input type="range" id="stud-hole-slider" class="stud-hole-slider">
+            <div id="stud-hole-value" class="slider-value">6 <span class="unit">mm</span></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title with-space">Connector Type</div>
+        <div class="connector-types">
+            <div class="connector-type selected">
+                <div class="connector-icon">
+                    <img src="assets/CL.png" alt="Cable Lug">
+                </div>
+                Cable Lug
+            </div>
+            <div class="connector-type">
+                <div class="connector-icon">
+                    <img src="assets/C.png" alt="Connector">
+                </div>
+                Connector
+            </div>
+            <div class="connector-type">
+                <div class="connector-icon">
+                    <img src="assets/WF.png" alt="Wire Ferrule">
+                </div>
+                Wire Ferrule
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Compatible Connectors</div>
+        <div class="search-wrapper">
+            <div class="search-container">
+                <input type="text" id="connector-search" class="search-box" placeholder="Search">
+                <div id="connector-results" class="search-results"></div>
+            </div>
+            <div id="selected-connector-display"></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Compatible Tools</div>
+        <div class="search-wrapper">
+            <div class="search-container">
+                <input type="text" id="tool-search" class="search-box" placeholder="Search">
+                <div id="tool-results" class="search-results"></div>
+            </div>
+            <div id="selected-tool-display"></div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+</body>
+</html>

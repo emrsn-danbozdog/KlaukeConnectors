@@ -1,0 +1,624 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    max-width: 588px;
+    margin: 0 auto;
+    padding: 17px 17px 101px 17px;
+    background-color: #f5f5f5;
+    min-height: 100vh;
+    position: relative;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.back-button {
+    color: #0066cc;
+    text-decoration: none;
+    font-size: 20px;
+    margin-right: 13px;
+    line-height: 1;
+}
+
+h1 {
+    font-size: 24px;
+    margin: 0;
+    font-weight: 500;
+    color: #333;
+}
+
+.description {
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+
+.section-title {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 7px;
+    font-weight: normal;
+    position: relative;
+    z-index: 1;
+}
+
+.section-title.with-space {
+    margin-top: 13px !important;
+    margin-bottom: 7px !important;
+}
+
+.material-options {
+    display: flex;
+    gap: 17px;
+    background-color: white;
+    padding: 17px;
+    border-radius: 7px;
+}
+
+.material-option {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.material-option input[type="radio"] {
+    display: none;
+}
+
+.custom-checkbox {
+    width: 17px;
+    height: 17px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    margin-right: 8px;
+    display: inline-block;
+    position: relative;
+}
+
+.material-option input[type="radio"]:checked + .custom-checkbox {
+    background-color: #0066cc;
+    border-color: #0066cc;
+}
+
+.material-option input[type="radio"]:checked + .custom-checkbox::after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.material-label {
+    font-size: 13px;
+    color: #333;
+}
+
+.material-label:first-of-type {
+    color: #0066cc;
+}
+
+.conductor-types, .connector-types {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    gap: 17px;
+}
+
+.conductor-type {
+    flex: 1;
+    border: 2px solid #ddd;
+    border-radius: 7px;
+    padding: 17px;
+    text-align: center;
+    cursor: pointer;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 118px;
+    min-width: 0;
+    width: 100%;
+}
+
+.conductor-type.selected {
+    border-color: #0066cc;
+    background-color: #f0f7ff;
+}
+
+.conductor-icon {
+    margin-bottom: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+}
+
+.conductor-type-text {
+    font-size: 13px;
+    line-height: 1.3;
+}
+
+.cross-section {
+    margin-bottom: 30px;
+}
+
+.cross-section-slider {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.next-button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+
+.next-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.conductor-icon img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.section {
+    margin: 0 auto 20px auto;
+    max-width: 900px;
+    position: relative;
+}
+
+.search-wrapper {
+    min-height: 50px;
+    position: relative;
+    z-index: 1000;
+}
+
+.section:has(#connector-search) .search-wrapper {
+    z-index: 1001;
+}
+
+.search-container {
+    position: relative;
+    z-index: 1000;
+}
+
+.search-box {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    font-size: 13px;
+    background-color: white;
+    margin-bottom: 0;
+    position: relative;
+    z-index: 999;
+}
+
+.connector-type {
+    flex: 1;
+    border: 2px solid #ddd;
+    border-radius: 7px;
+    padding: 17px;
+    text-align: center;
+    cursor: pointer;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 118px;
+    min-width: 0;
+    width: 100%;
+}
+
+.connector-type.selected {
+    border-color: #0066cc;
+    background-color: #f0f7ff;
+}
+
+.slider-container {
+    position: relative;
+    padding: 17px;
+    background: white;
+    border-radius: 7px;
+    border: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    gap: 17px;
+}
+
+.slider-value {
+    position: static;
+    font-size: 17px;
+    font-weight: bold;
+    color: #0066cc;
+    min-width: 67px;
+    text-align: right;
+    margin-left: auto;
+}
+
+input[type="range"] {
+    flex: 1;
+    margin: 0;
+}
+
+.unit {
+    font-size: 12px;
+    color: #666;
+}
+
+.connector-icon {
+    margin-bottom: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 55px;
+}
+
+.connector-icon img {
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+}
+
+.custom-checkbox {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    display: inline-block;
+    position: relative;
+    margin-right: 10px;
+}
+
+.custom-checkbox::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    background-color: #0066cc;
+    opacity: 0;
+}
+
+.material-option input[type="checkbox"]:checked + .custom-checkbox::before {
+    opacity: 1;
+}
+
+.search-results {
+    position: absolute;
+    width: 100%;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    z-index: 1000;
+    display: none;
+    max-height: 252px;
+    overflow-y: auto;
+    top: calc(100% + 2px);
+    left: 0;
+}
+
+.result-item {
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.result-item:hover {
+    background-color: #f5f5f5;
+}
+
+.result-thumbnail {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    flex-shrink: 0;
+    display: block;
+}
+
+.result-content {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.part-number {
+    font-weight: bold;
+    color: #0066cc;
+    word-break: break-word;
+    margin: 0;
+}
+
+.part-details {
+    font-size: 11px;
+    color: #666;
+    margin-top: 3px;
+    word-break: break-word;
+    margin-bottom: 0;
+}
+
+.selected-product {
+    margin-top: 13px;
+    display: none;
+}
+
+.selected-product.visible {
+    display: block;
+}
+
+.section-title.with-space {
+    margin-top: 20px !important;
+    margin-bottom: 15px !important;
+}
+
+.section:last-child {
+    margin-bottom: 20px;
+}
+
+.section:last-child .search-box {
+    margin-bottom: 15px;
+}
+
+.selected-product .result-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    padding: 10px;
+} 
+
+/* Add these new styles at the end of your CSS file */
+
+.selected-item-display {
+    margin-top: 15px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: none;
+}
+
+.selected-item {
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    border-bottom: 1px solid #eee;
+}
+
+.selected-item-image {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.selected-item-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.selected-item-id {
+    font-weight: bold;
+    color: #0066cc;
+    margin: 0;
+    font-size: 12px;
+}
+
+.selected-item-name {
+    font-size: 12px;
+    color: #333;
+    margin: 3px 0;
+}
+
+.selected-item-details {
+    font-size: 11px;
+    color: #666;
+    margin: 0;
+}
+
+/* Remove these old styles */
+.selected-product,
+.selected-product.visible {
+    display: none;
+}
+
+/* Ensure search results and selected items match */
+.search-results,
+.selected-item-display {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.result-item,
+.selected-item {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.result-item:last-child,
+.selected-item:last-child {
+    border-bottom: none;
+}
+
+.search-container {
+    position: relative;
+    height: 42px;
+    margin-bottom: 0;
+    z-index: 1;
+}
+
+#selected-connector-display,
+#selected-tool-display {
+    width: 100%;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: none;
+    margin: 0;
+    position: relative;
+    z-index: 999;
+}
+
+/* Force sections with specific content to maintain spacing */
+.section:has(.connector-types),
+.section:has(#selected-connector-display),
+.section:has(#selected-tool-display),
+.section:has(.search-container) {
+    margin-bottom: 30px !important;
+}
+
+/* Update section spacing */
+.section {
+    margin: 0 auto;
+    max-width: 900px;
+    padding-bottom: 8px;
+    position: relative;
+}
+
+/* Adjust title spacing */
+.section-title {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 7px;
+    font-weight: normal;
+    position: relative;
+    z-index: 1;
+}
+
+/* Adjust spacing between sections */
+.section-title.with-space {
+    margin-top: 13px !important;
+    margin-bottom: 7px !important;
+}
+
+/* Remove any extra spacing from results */
+.search-results,
+#selected-connector-display,
+#selected-tool-display {
+    margin: 0;
+    padding: 0;
+}
+
+/* Adjust search container spacing */
+.search-container {
+    margin: 0;
+    padding: 0;
+}
+
+/* Last section spacing */
+.section:last-child {
+    margin-bottom: 20px;
+}
+
+/* Ensure search box has proper spacing */
+.search-box {
+    margin-bottom: 0;
+}
+
+/* Container for search and selected item */
+.search-container {
+    position: relative;
+    height: 50px;
+    margin-bottom: 0;
+}
+
+/* Position selected item display */
+#selected-connector-display,
+#selected-tool-display {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: none;
+}
+
+/* Ensure search box doesn't overlap */
+.search-box {
+    position: relative;
+    z-index: 1;
+}
+
+/* Style for the result items */
+.result-item {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    background: white;
+}
+
+/* Ensure proper display when selected */
+#selected-connector-display.visible,
+#selected-tool-display.visible {
+    display: block !important;
+}
+
+/* Add consistent spacing between Compatible Connectors and Compatible Tools sections */
+.section:has(#connector-search),
+.section:has(#tool-search) {
+    margin-bottom: 34px !important;
+    min-height: calc(42px + 37px);
+}
+
+/* Remove any conflicting spacing rules */
+.section:last-child {
+    margin-bottom: 40px !important;
+}
+
+/* Ensure search containers don't add extra space */
+.search-container {
+    margin-bottom: 0;
+}
+
+/* Adjust section title spacing */
+.section-title {
+    margin-bottom: 7px;
+}
+
+.no-results {
+    cursor: default;
+    pointer-events: none;
+}
+
+.no-results-message {
+    color: #666;
+    text-align: left;
+    padding: 8px;
+    font-style: italic;
+}

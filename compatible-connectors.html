@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compatible Connectors</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .back-button {
+            color: #0066cc;
+            text-decoration: none;
+            font-size: 18px;
+            margin-right: 10px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .conductor-info {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .conductor-info p {
+            margin: 5px 0;
+            color: #666;
+        }
+
+        .connector-list {
+            margin-top: 20px;
+        }
+
+        .connector-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .connector-icon {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
+            background: #f0f0f0;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .connector-details {
+            flex-grow: 1;
+        }
+
+        .connector-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .connector-specs {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .action-buttons {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: #f5f5f5;
+            display: flex;
+            gap: 10px;
+            justify-content: space-between;
+        }
+
+        .action-button {
+            flex: 1;
+            padding: 15px;
+            border-radius: 8px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .support-button {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        .quote-button {
+            background-color: #0066cc;
+            color: white;
+        }
+
+        .selected-count {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #666;
+        }
+    </style>
+    <script src="csv-reader.js"></script>
+</head>
+<body>
+    <div class="header">
+        <a href="index.html" class="back-button">←</a>
+        <h1>Compatibility</h1>
+    </div>
+
+    <div class="conductor-info">
+        <p id="conductor-type"></p>
+        <p id="cross-section"></p>
+    </div>
+
+    <div id="connector-list" class="connector-list">
+        <!-- Connectors will be dynamically added here -->
+    </div>
+
+    <div class="selected-count">0 products selected.</div>
+    
+    <div class="action-buttons">
+        <button class="action-button support-button">TECH SUPPORT</button>
+        <button class="action-button quote-button">REQUEST QUOTE</button>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script>
+        // Parse URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const material = urlParams.get('material');
+        const conductorType = urlParams.get('type');
+        const crossSection = urlParams.get('crossSection');
+
+        // Update conductor info
+        document.getElementById('conductor-type').textContent = 
+            `Conductor: ${material.charAt(0).toUpperCase() + material.slice(1)} - ${conductorType.replace('class', 'Class ')}`;
+        document.getElementById('cross-section').textContent = 
+            `Tool: EK 60/22 Battery-powered hydraulic crimping tool 6 - 300 mm²`;
+
+        function filterConnectors(connectors, material, conductorType, crossSection) {
+            const classColumn = `Cable ${conductorType.replace('class', 'Class ')}`;
+            
+            return connectors.filter(connector => {
+                // Check material
+                const isCopperConnector = connector['Connecting material'].toLowerCase().includes('cu');
+                const isCorrectMaterial = material === 'copper' ? isCopperConnector : !isCopperConnector;
+                
+                // Check conductor type compatibility
+                const isCompatibleType = connector[classColumn] === 'x';
+                
+                // Check cross section
+                const connectorCrossSection = parseFloat(connector['Nominal cross section mm²']);
+                const selectedCrossSection = parseFloat(crossSection);
+                const isCompatibleCrossSection = connectorCrossSection === selectedCrossSection;
+                
+                // Debug log to check values
+                console.log({
+                    connector,
+                    classColumn,
+                    isCompatibleType,
+                    connectorCrossSection,
+                    selectedCrossSection,
+                    isCompatibleCrossSection
+                });
+                
+                return isCorrectMaterial && isCompatibleType && isCompatibleCrossSection;
+            });
+        }
+
+        function createConnectorItem(connector) {
+            const item = document.createElement('div');
+            item.className = 'connector-item';
+            item.innerHTML = `
+                <div class="connector-icon">🔌</div>
+                <div class="connector-details">
+                    <div class="connector-name">${connector['Connecting material']}</div>
+                    <div class="connector-specs">Part No. ${connector['Part No.']}</div>
+                    <div class="connector-specs">Cross section: ${connector['Nominal cross section mm²']} mm²</div>
+                </div>
+            `;
+            return item;
+        }
+
+        // Load and process the CSV data
+        async function initialize() {
+            const connectors = await handleFileLoad();
+            if (connectors.length > 0) {
+                const compatibleConnectors = filterConnectors(connectors, material, conductorType, crossSection);
+
+                // Populate connector list
+                const connectorList = document.getElementById('connector-list');
+                if (compatibleConnectors.length > 0) {
+                    compatibleConnectors.forEach(connector => {
+                        connectorList.appendChild(createConnectorItem(connector));
+                    });
+                    
+                    // Update selected count
+                    document.querySelector('.selected-count').textContent = 
+                        `${compatibleConnectors.length} products selected.`;
+                } else {
+                    connectorList.innerHTML = '<p>No compatible connectors found.</p>';
+                    document.querySelector('.selected-count').textContent = '0 products selected.';
+                }
+            }
+        }
+
+        // Initialize the page
+        initialize();
+
+        // Add event listeners for buttons
+        document.querySelector('.support-button').addEventListener('click', () => {
+            alert('Contacting technical support...');
+        });
+
+        document.querySelector('.quote-button').addEventListener('click', () => {
+            alert('Requesting quote for selected connectors...');
+        });
+    </script>
+</body>
+</html> 
