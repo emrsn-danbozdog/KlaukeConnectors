@@ -45,7 +45,7 @@ h1 {
 }
 
 .section-title.with-space {
-    margin-top: 13px !important;
+    margin-top: 8px !important;
     margin-bottom: 7px !important;
 }
 
@@ -106,7 +106,7 @@ h1 {
 .conductor-types, .connector-types {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 25px;
+    margin-bottom: 8px;
     gap: 17px;
 }
 
@@ -180,8 +180,9 @@ h1 {
 }
 
 .section {
-    margin: 0 auto 20px auto;
+    margin: 0 auto;
     max-width: 900px;
+    padding-bottom: 4px;
     position: relative;
 }
 
@@ -495,14 +496,14 @@ input[type="range"] {
 .section:has(#selected-connector-display),
 .section:has(#selected-tool-display),
 .section:has(.search-container) {
-    margin-bottom: 30px !important;
+    margin-bottom: 12px !important;
 }
 
 /* Update section spacing */
 .section {
     margin: 0 auto;
     max-width: 900px;
-    padding-bottom: 8px;
+    padding-bottom: 4px;
     position: relative;
 }
 
@@ -518,7 +519,7 @@ input[type="range"] {
 
 /* Adjust spacing between sections */
 .section-title.with-space {
-    margin-top: 13px !important;
+    margin-top: 8px !important;
     margin-bottom: 7px !important;
 }
 
