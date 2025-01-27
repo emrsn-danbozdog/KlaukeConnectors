@@ -590,10 +590,11 @@ input[type="range"] {
     display: block !important;
 }
 
-/* Add consistent spacing between Compatible Connectors and Compatible Tools sections */
+/* Add consistent spacing between sections */
 .section:has(#connector-search),
-.section:has(#tool-search) {
-    margin-bottom: 34px !important;
+.section:has(#tool-search),
+.section:has(.stud-hole-slider) {
+    margin-bottom: 30px !important;
     min-height: calc(42px + 37px);
 }
 
